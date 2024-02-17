@@ -1,17 +1,22 @@
 # assessment
 
-What would I change if moving to production?
+## Commands
 
-* I would tighen up the types more. 
+* `npm run dev`: Run for development
+* `npm test`: Run tests
+* `npm build`: Build for deployment
+* `npm start`: Run production
 
-* I am happy with the unit tests created, but if I had more time I would probably 
-modify `lib.replaceRefs` to use a trampoline to prevent stack overflow issues.
-If staying with the recursive implementation, I would add additional tests to determine 
+## What would I change if moving to production?
+
+* tighen up the types more. 
+
+* While I am happy with the unit tests created, if I had more time I would modify `lib.replaceRefs` to use a trampoline to prevent stack overflow issues.
+
+* If staying with the recursive implementation, I would add additional tests to determine 
 how arbitrarily deep the nesting could go before becoming an issue.
 
-* I would add logging and probably telemetry (Prometheus or OpenTelemetry).
-
-* I would ensure the error handling is more robust.
+* add logging and telemetry (Prometheus).
 
 
 
