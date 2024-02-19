@@ -1,5 +1,5 @@
 import express, { Express, NextFunction, Request, Response } from "express";
-import { replaceRefs } from "./lib";
+import { replaceRefs, replaceRefsIter } from "./lib";
 import createError from 'http-errors';
 
 const PORT = process.env.PORT || 8080;
@@ -10,7 +10,12 @@ app.use(express.json());
 
 // take arbitrary json and replace "dog" with "cat", (but not any strings containing dog)
 app.post('/', function (req: Request, res: Response, next: NextFunction) {
-    res.json(replaceRefs(req.body));
+    if (req.query['algo'] === 'recur') {
+        console.log('using recur');
+        return res.json(replaceRefs(req.body, 'dog', 'cat'));
+    }
+    console.log('using iter');
+    res.json(replaceRefsIter(req.body, 'dog', 'cat'));
 });
 
 // catch 404 and forward to error handler

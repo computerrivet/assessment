@@ -1,16 +1,17 @@
 import { describe, expect, test } from '@jest/globals';
-import { replaceRefs } from '../src/lib';
+import { replaceRefsIter } from '../src/lib';
 
-describe('replaceRefs', () => {
+describe('replaceRefIter', () => {
 
     const searchTerm = 'dog';
     const replaceTerm = 'cat';
+
 
     test('null', () => {
         const input = null
         const desired = null;
 
-        const output = replaceRefs(input, searchTerm, replaceTerm);
+        const output = replaceRefsIter(input, searchTerm, replaceTerm);
 
         expect(output).toBe(desired);
     });
@@ -21,7 +22,7 @@ describe('replaceRefs', () => {
         const input = "dog";
         const desired = "cat";
 
-        const output = replaceRefs(input, searchTerm, replaceTerm);
+        const output = replaceRefsIter(input, searchTerm, replaceTerm);
 
         expect(output).toBe(desired);
     });
@@ -30,7 +31,7 @@ describe('replaceRefs', () => {
         const input = "somethingwithdog";
         const desired = "somethingwithdog";
 
-        const output = replaceRefs(input, searchTerm, replaceTerm);
+        const output = replaceRefsIter(input, searchTerm, replaceTerm);
         expect(output).toBe(desired)
     });
 
@@ -41,7 +42,7 @@ describe('replaceRefs', () => {
         const desiredObj = {
             "changeme": "cat"
         };
-        const output = replaceRefs(inputObj, searchTerm, replaceTerm);
+        const output = replaceRefsIter(inputObj, searchTerm, replaceTerm);
         console.log(output);
 
         expect(output).toMatchObject(desiredObj);
@@ -55,7 +56,7 @@ describe('replaceRefs', () => {
         const desiredArray = [
             "cat"
         ];
-        const output = replaceRefs(inputArray, searchTerm, replaceTerm);
+        const output = replaceRefsIter(inputArray, searchTerm, replaceTerm);
         console.log(output);
 
         expect(output).toEqual(desiredArray);
@@ -68,7 +69,7 @@ describe('replaceRefs', () => {
         const desiredArray = [
             "dogwithsomething"
         ];
-        const output = replaceRefs(inputArray, searchTerm, replaceTerm);
+        const output = replaceRefsIter(inputArray, searchTerm, replaceTerm);
         console.log(output);
 
         expect(output).toEqual(desiredArray);
@@ -82,7 +83,7 @@ describe('replaceRefs', () => {
             "changeme": "cat"
         };
 
-        const output = replaceRefs(inputObj, searchTerm, replaceTerm);
+        const output = replaceRefsIter(inputObj, searchTerm, replaceTerm);
         console.log(output);
 
         expect(output).toMatchObject(desiredObj);
@@ -95,7 +96,7 @@ describe('replaceRefs', () => {
         const desiredObj = {
             "donotchangeme": "somethingwithdog"
         };
-        const output = replaceRefs(inputObj, searchTerm, replaceTerm);
+        const output = replaceRefsIter(inputObj, searchTerm, replaceTerm);
         expect(output).toMatchObject(desiredObj);
     });
 
@@ -136,7 +137,7 @@ describe('replaceRefs', () => {
                 "nestedstringarray": ["cat", "somethingwithdog"]
             }
         ];
-        const output = replaceRefs(inputObj, searchTerm, replaceTerm);
+        const output = replaceRefsIter(inputObj, searchTerm, replaceTerm);
         expect(output).toMatchObject(desiredObj);
     });
 });
