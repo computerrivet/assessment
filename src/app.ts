@@ -1,5 +1,5 @@
 import express, { Express, NextFunction, Request, Response } from "express";
-import { replaceRefs, replaceRefsIter } from "./lib";
+import { replaceRefsRecur, replaceRefsIter } from "./lib";
 import createError from 'http-errors';
 
 const PORT = process.env.PORT || 8080;
@@ -12,7 +12,7 @@ app.use(express.json());
 app.post('/', function (req: Request, res: Response, next: NextFunction) {
     if (req.query['algo'] === 'recur') {
         console.log('using recur');
-        return res.json(replaceRefs(req.body, 'dog', 'cat'));
+        return res.json(replaceRefsRecur(req.body, 'dog', 'cat'));
     }
     console.log('using iter');
     res.json(replaceRefsIter(req.body, 'dog', 'cat'));

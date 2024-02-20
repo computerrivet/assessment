@@ -1,5 +1,5 @@
 
-export function replaceRefs(input: any, searchTerm: any, replaceTerm: any): any {
+export function replaceRefsRecur(input: any, searchTerm: any, replaceTerm: any): any {
 
     // case 1: array
     if (Array.isArray(input)) {
@@ -7,7 +7,7 @@ export function replaceRefs(input: any, searchTerm: any, replaceTerm: any): any 
         const newArray = [];
 
         for (let obj of input) {
-            newArray.push(replaceRefs(obj, searchTerm, replaceTerm));
+            newArray.push(replaceRefsRecur(obj, searchTerm, replaceTerm));
         }
 
         return newArray;
@@ -19,7 +19,7 @@ export function replaceRefs(input: any, searchTerm: any, replaceTerm: any): any 
 
         // recurse
         for (let key of Object.keys(input)) {
-            newObj[key] = replaceRefs(input[key], searchTerm, replaceTerm);
+            newObj[key] = replaceRefsRecur(input[key], searchTerm, replaceTerm);
         }
 
         return newObj;
